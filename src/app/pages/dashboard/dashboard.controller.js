@@ -1,6 +1,7 @@
 export default
 class DashboardController {
-  constructor(){
+  constructor($scope){
+    'ngInject';
 
   }
 }
