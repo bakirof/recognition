@@ -9,21 +9,25 @@ export default function inputFile() {
       scope.$watch('mainImage', (image)=> {
         if (image) {
           angular.element(image).load(function () {
-            console.log(image.height);
             angular.element('.grayscale-img-canvas').remove();
-            Filters.filterImage(Filters.grayscale, image);
+            Filters.setPixels(Filters.filterImage(Filters.grayscale, image), image);
           });
         }
       });
 
+      Filters.setPixels = function (data, img) {
+        var c = document.getElementsByTagName('canvas')[0];
+        var ctx = c.getContext('2d');
+        ctx.putImageData(data, 0, 0);
+      };
 
       Filters.getPixels = function (img) {
-        var c = this.getCanvas(img.width*10, img.height*10);
+        var c = this.getCanvas(img.width * 10, img.height * 10);
         var ctx = c.getContext('2d');
         c.classList.add("img-responsive");
         c.classList.add("grayscale-img-canvas");
-        ctx.drawImage(img, 0, 0, img.clientWidth*10, img.clientHeight*10);
-        return ctx.getImageData(0, 0, c.width, c.height);
+        ctx.drawImage(img, 0, 0, img.clientWidth * 10, img.clientHeight * 10);
+        return ctx.getImageData(0, 0, img.width * 10, img.height * 10);
       };
 
       Filters.getCanvas = function (w, h) {
