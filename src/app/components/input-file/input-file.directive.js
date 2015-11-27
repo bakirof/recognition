@@ -26,7 +26,7 @@ export default function inputFile($rootScope) {
             aImg.src = tmp;
             scope.mainImage = aImg;
             $rootScope.$emit('inputFile');
-            scope.$apply();§§
+            scope.$apply();
           };
         })(img);
 
