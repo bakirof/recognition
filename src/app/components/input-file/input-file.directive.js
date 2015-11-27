@@ -1,4 +1,4 @@
-export default function inputFile() {
+export default function inputFile($rootScope) {
   return {
     restrict: 'E',
     templateUrl: 'app/components/input-file/input-file.html',
@@ -25,7 +25,8 @@ export default function inputFile() {
             var tmp = e.target.result;
             aImg.src = tmp;
             scope.mainImage = aImg;
-            scope.$apply();
+            $rootScope.$emit('inputFile');
+            scope.$apply();§§
           };
         })(img);
 
