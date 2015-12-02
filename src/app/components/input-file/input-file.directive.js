@@ -6,7 +6,7 @@ export default function inputFile($rootScope) {
 
       var dropZone = angular.element('#drop-zone');
       scope.startLoading = false;
-      scope.fileName = 'Поместить файл';
+      scope.fileName = 'Input file';
 
       function handleFileSelect(evt) {
 
