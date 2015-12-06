@@ -1,8 +1,7 @@
 export default function Filters() {
   'ngInject';
 
-  this.x = 3;
-  this.y = 3;
+  this.xy = 3;
 
   this.setPixels = function (elements, img) {
     var c = elements[1];
@@ -12,11 +11,12 @@ export default function Filters() {
   };
 
   this.getPixels = function (img, parent) {
-    var c = this.getCanvas(img.width, img.height, parent);
+    var mashtab = 1;
+    var c = this.getCanvas(img.width * mashtab, img.height * mashtab, parent);
     c.classList.add("img-responsive");
     var ctx = c.getContext('2d');
-    ctx.drawImage(img, 0, 0, img.clientWidth, img.clientHeight);
-    return [ctx.getImageData(0, 0, img.width, img.height), c];
+    ctx.drawImage(img, 0, 0, img.clientWidth * mashtab, img.clientHeight * mashtab);
+    return [ctx.getImageData(0, 0, img.width * mashtab, img.height * mashtab), c];
   };
 
   this.getCanvas = function (w, h, parent) {
@@ -40,70 +40,135 @@ export default function Filters() {
     return elements;
   };
 
+  /*this.median = (elements) => {
+   console.log('median');
+   elements[1].classList.add('median-img-canvas');
+   var tmpArray = [];
+   var data = this.toStructuredData(elements[0]);
+   var half = parseInt(this.xy / 2);
+   var tmpXY = this.xy;
+   var tmpI = 0;
+   var tmpJ = 0;
+   var t = 0;
+   var checkY = ()=> {
+   if (y - i + half > elements[0].height - 1) {
+   t++;
+   i = y + half - (elements[0].height - 1);
+   }
+   if (y - i + half < 0) {
+   t++;
+   i = y + half;
+   }
+   if (!data[y - i + half]) {
+   checkY();
+   }
+   };
+   var checkX = ()=> {
+   if (x - j + half > elements[0].width - 1) {
+   t++;
+   j = x + half - (elements[0].width - 1);
+   }
+   if (x - j + half < 0) {
+   t++;
+   j = x + half;
+   }
+   };
+   for (var y = 0; y < elements[0].height; y++) {
+   for (var x = 0; x < elements[0].width; x++) {
+   for (var i = 0; i < tmpXY; i++) {
+   tmpI = i;
+   for (var j = 0; j < tmpXY; j++) {
+   tmpJ = j;
+   checkY();
+   checkX();
+   if (data[y - i + half] && data[y - i + half][x - j + half]) {
+   tmpArray.push(data[y - i + half][x - j + half]);
+   }
+   if (t) {
+   i = tmpI;
+   j = tmpJ;
+   }
+   t = 0;
+   }
+   }
+   tmpArray.sort(function compareNumbers(a, b) {
+   return a - b;
+   });
+
+   data[y][x] = tmpArray[((tmpXY * tmpXY) / 2 + 0.5)];
+   tmpArray = [];
+
+   }
+   }
+   elements[0].data.set(this.toOldFormatData(elements[0], data));
+   data = null;
+   return elements;
+   };*/
   this.median = (elements) => {
     elements[1].classList.add('median-img-canvas');
     var tmpArray = [];
     var data = this.toStructuredData(elements[0]);
-    var half = parseInt(this.x / 2);
-    var tmpX = this.x;
-    var tmpY = this.y;
-    var tmpI = 0;
-    var tmpJ = 0;
-    var t = 0;
-    var checkY = ()=> {
-      if (y - i + half > elements[0].height - 1) {
-        t++;
-        i = y + half - (elements[0].height - 1);
-      }
-      if (y - i + half < 0) {
-        t++;
-        i = y + half;
-      }
-      if (!data[y - i + half]) {
-        checkY();
-      }
-    };
-    var checkX = ()=> {
-      if (x - j + half > elements[0].width - 1) {
-        t++;
-        j = x + half - (elements[0].width - 1);
-      }
-      if (x - j + half < 0) {
-        t++;
-        j = x + half;
-      }
-    };
+    var tmpXY = elements[2];
+    var half = parseInt(tmpXY / 2);
+    var currentY;
+    var currentX;
     for (var y = 0; y < elements[0].height; y++) {
       for (var x = 0; x < elements[0].width; x++) {
-        for (var i = 0; i < tmpY; i++) {
-          tmpI = i;
-          checkY();
-          for (var j = 0; j < tmpX; j++) {
-            tmpJ = j;
-            checkX();
-            if (data[y - i + half] && data[y - i + half][x - j + half]) {
-              tmpArray.push(data[y - i + half][x - j + half]);
+        for (var i = 0; i < tmpXY; i++) {
+          for (var j = 0; j < tmpXY; j++) {
+            currentY = y + i - half;
+            currentX = x + j - half;
+
+//- вершины ------------------------------------------------------------------------------------------------------------
+            if (currentY < 0 && currentX < 0) {
+              tmpArray.push(data[0][0]);
             }
-            if (t) {
-              i = tmpI;
-              j = tmpJ;
+
+            else if (currentY < 0  && currentX > elements[0].width - 1) {
+              tmpArray.push(data[0][elements[0].width - 1]);
             }
-            t = 0;
+
+            else if (currentY > elements[0].height - 1 && currentX > elements[0].width - 1) {
+              tmpArray.push(data[elements[0].height - 1][elements[0].width - 1]);
+            }
+
+            else if (currentY > elements[0].height - 1 && currentX < 0) {
+              tmpArray.push(data[elements[0].height - 1][0]);
+            }
+//----------------------------------------------------------------------------------------------------------------------
+
+            else if (currentY < 0 && currentX >= 0 && currentX <= elements[0].width - 1) {
+              tmpArray.push(data[0][currentX]);
+            }
+
+            else if (currentY >= 0 && currentY <= elements[0].height-1 && currentX < 0) {
+              tmpArray.push(data[currentY][0]);
+            }
+
+            else if (currentY > elements[0].height - 1 && currentX >= 0 && currentX <= elements[0].width - 1) {
+              tmpArray.push(data[elements[0].height - 1][currentX]);
+            }
+            else if (
+              currentY >= 0 && currentY <= elements[0].height - 1 && currentX > elements[0].width - 1) {
+              tmpArray.push(data[currentY][elements[0].width - 1]);
+            }
+            else {
+              tmpArray.push(data[currentY][currentX]);
+            }
           }
         }
         tmpArray.sort(function compareNumbers(a, b) {
           return a - b;
         });
-
-        data[y][x] = tmpArray[((tmpY * tmpX) / 2 + 0.5)];
+        data[y][x] = tmpArray[((tmpXY * tmpXY) / 2 - 0.5)];
         tmpArray = [];
 
       }
     }
     elements[0].data.set(this.toOldFormatData(elements[0], data));
+    data = null;
     return elements;
   };
-
 
   this.toStructuredData = function (element) {
     var w = element.width, h = element.height, i = 0, data = element.data;
@@ -118,7 +183,7 @@ export default function Filters() {
         tmpData[y][x] = data[i];
       }
     }
-    console.log(tmpData);
+    data = null;
     return tmpData;
   };
 
@@ -132,17 +197,18 @@ export default function Filters() {
         tmpData[i + 3] = 255;
       }
     }
-    console.log(tmpData);
     return tmpData;
   };
 
-  this.filterImage = function (filter, image, parent, pixels) {
+  this.filterImage = function (filter, image, parent, pixels, xy) {
+
     var args;
     if (!pixels) {
       args = [this.getPixels(image, parent)];
     } else {
       args = [this.getPixels(image, parent)];
       args[0][0] = pixels;
+      args[0][2] = xy;
     }
     return filter.apply(null, args);
   };

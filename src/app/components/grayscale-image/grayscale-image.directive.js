@@ -11,7 +11,6 @@ export default function inputFile($rootScope, Filters) {
           angular.element(scope.mainImage).load(()=> {
             angular.element('.grayscale-img-canvas').remove();
             scope.grayscaleData = Filters.setPixels(Filters.filterImage(Filters.grayscale, scope.mainImage, grayscaleImage), scope.mainImage);
-            console.log(scope.grayscaleData);
             $rootScope.$emit('grayscaled', scope.grayscaleData);
           });
         }
