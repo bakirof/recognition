@@ -1,7 +1,10 @@
 <div id="grayscale-image">
+  <span ng-if="!mainImage"> Grayscale image</span>
 </div>
-<div class="col-xs-12">
-  <div class="download-button">
-    Download
+<div class="menu col-xs-12" ng-show="mainImage">
+  <div class="col-xs-2"></div>
+  <input class="mashtab median-control col-xs-4" type="text" ng-model="scale" ng-model-options="{ debounce: 1000 }" ng-change="toGray()" placeholder="Scale"/>
+  <div class="col-xs-4 download-button">
+      Download
   </div>
 </div>

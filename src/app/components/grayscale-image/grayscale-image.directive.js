@@ -4,17 +4,21 @@ export default function inputFile($rootScope, Filters) {
     restrict: 'E',
     templateUrl: 'app/components/grayscale-image/grayscale-image.html',
     link: (scope)=> {
-      var grayscaleImage = angular.element('#grayscale-image');
+      scope.scale = 1;
+      scope.defaultGrayscaleImage = angular.element('#grayscale-image');
 
       $rootScope.$on('inputFile', ()=> {
         if (scope.mainImage) {
           angular.element(scope.mainImage).load(()=> {
-            angular.element('.grayscale-img-canvas').remove();
-            scope.grayscaleData = Filters.setPixels(Filters.filterImage(Filters.grayscale, scope.mainImage, grayscaleImage), scope.mainImage);
-            $rootScope.$emit('grayscaled', scope.grayscaleData);
+            scope.toGray();
           });
         }
       });
+      scope.toGray = ()=> {
+        angular.element('.grayscale-img-canvas').remove();
+        scope.grayscaleData = Filters.setPixels(Filters.filterImage(Filters.grayscale, scope.mainImage, scope.defaultGrayscaleImage, 0, 0, scope.scale), scope.mainImage);
+        $rootScope.$emit('grayscaled', scope.grayscaleData);
+      }
     }
   };
 

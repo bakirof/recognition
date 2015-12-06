@@ -2,24 +2,25 @@ export default function Filters() {
   'ngInject';
 
   this.xy = 3;
+  this.scale = 1;
 
-  this.setPixels = function (elements, img) {
+  this.setPixels = (elements, img)=> {
     var c = elements[1];
     var ctx = c.getContext('2d');
     ctx.putImageData(elements[0], 0, 0);
     return elements[0];
   };
 
-  this.getPixels = function (img, parent) {
-    var mashtab = 1;
-    var c = this.getCanvas(img.width * mashtab, img.height * mashtab, parent);
+  this.getPixels = (img, parent, inScale)=> {
+    var scale = inScale;
+    var c = this.getCanvas(img.width * scale, img.height * scale, parent);
     c.classList.add("img-responsive");
     var ctx = c.getContext('2d');
-    ctx.drawImage(img, 0, 0, img.clientWidth * mashtab, img.clientHeight * mashtab);
-    return [ctx.getImageData(0, 0, img.width * mashtab, img.height * mashtab), c];
+    ctx.drawImage(img, 0, 0, img.clientWidth * scale, img.clientHeight * scale);
+    return [ctx.getImageData(0, 0, img.width * scale, img.height * scale), c];
   };
 
-  this.getCanvas = function (w, h, parent) {
+  this.getCanvas = (w, h, parent)=> {
     var c = document.createElement('canvas');
     c.width = w;
     c.height = h;
@@ -40,70 +41,6 @@ export default function Filters() {
     return elements;
   };
 
-  /*this.median = (elements) => {
-   console.log('median');
-   elements[1].classList.add('median-img-canvas');
-   var tmpArray = [];
-   var data = this.toStructuredData(elements[0]);
-   var half = parseInt(this.xy / 2);
-   var tmpXY = this.xy;
-   var tmpI = 0;
-   var tmpJ = 0;
-   var t = 0;
-   var checkY = ()=> {
-   if (y - i + half > elements[0].height - 1) {
-   t++;
-   i = y + half - (elements[0].height - 1);
-   }
-   if (y - i + half < 0) {
-   t++;
-   i = y + half;
-   }
-   if (!data[y - i + half]) {
-   checkY();
-   }
-   };
-   var checkX = ()=> {
-   if (x - j + half > elements[0].width - 1) {
-   t++;
-   j = x + half - (elements[0].width - 1);
-   }
-   if (x - j + half < 0) {
-   t++;
-   j = x + half;
-   }
-   };
-   for (var y = 0; y < elements[0].height; y++) {
-   for (var x = 0; x < elements[0].width; x++) {
-   for (var i = 0; i < tmpXY; i++) {
-   tmpI = i;
-   for (var j = 0; j < tmpXY; j++) {
-   tmpJ = j;
-   checkY();
-   checkX();
-   if (data[y - i + half] && data[y - i + half][x - j + half]) {
-   tmpArray.push(data[y - i + half][x - j + half]);
-   }
-   if (t) {
-   i = tmpI;
-   j = tmpJ;
-   }
-   t = 0;
-   }
-   }
-   tmpArray.sort(function compareNumbers(a, b) {
-   return a - b;
-   });
-
-   data[y][x] = tmpArray[((tmpXY * tmpXY) / 2 + 0.5)];
-   tmpArray = [];
-
-   }
-   }
-   elements[0].data.set(this.toOldFormatData(elements[0], data));
-   data = null;
-   return elements;
-   };*/
   this.median = (elements) => {
     elements[1].classList.add('median-img-canvas');
     var tmpArray = [];
@@ -124,7 +61,7 @@ export default function Filters() {
               tmpArray.push(data[0][0]);
             }
 
-            else if (currentY < 0  && currentX > elements[0].width - 1) {
+            else if (currentY < 0 && currentX > elements[0].width - 1) {
               tmpArray.push(data[0][elements[0].width - 1]);
             }
 
@@ -141,7 +78,7 @@ export default function Filters() {
               tmpArray.push(data[0][currentX]);
             }
 
-            else if (currentY >= 0 && currentY <= elements[0].height-1 && currentX < 0) {
+            else if (currentY >= 0 && currentY <= elements[0].height - 1 && currentX < 0) {
               tmpArray.push(data[currentY][0]);
             }
 
@@ -170,7 +107,7 @@ export default function Filters() {
     return elements;
   };
 
-  this.toStructuredData = function (element) {
+  this.toStructuredData = (element)=> {
     var w = element.width, h = element.height, i = 0, data = element.data;
     var tmpData = new Array(h);
 
@@ -187,7 +124,7 @@ export default function Filters() {
     return tmpData;
   };
 
-  this.toOldFormatData = function (element, data) {
+  this.toOldFormatData = (element, data)=> {
     var w = element.width, h = element.height, i = 0;
     var tmpData = new Array(w * h);
 
@@ -200,16 +137,16 @@ export default function Filters() {
     return tmpData;
   };
 
-  this.filterImage = function (filter, image, parent, pixels, xy) {
+  this.filterImage = (filter, image, parent, pixels, xy, scale) => {
 
     var args;
     if (!pixels) {
-      args = [this.getPixels(image, parent)];
+      args = [this.getPixels(image, parent, scale)];
     } else {
-      args = [this.getPixels(image, parent)];
+      args = [this.getPixels(image, parent, scale)];
       args[0][0] = pixels;
       args[0][2] = xy;
     }
-    return filter.apply(null, args);
+    return filter.apply(this, args);
   };
 };
