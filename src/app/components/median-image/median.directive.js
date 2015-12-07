@@ -21,6 +21,7 @@ export default function medianImage($rootScope, Filters) {
         for (var i = 0; i < scope.repeat; i++) {
           scope.filt();
         }
+        $rootScope.$emit('median', scope.grayscaleData);
       };
 
 
