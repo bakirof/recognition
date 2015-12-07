@@ -149,4 +149,28 @@ export default function Filters() {
     }
     return filter.apply(this, args);
   };
+
+  this.filterF1 = (data, width, step)=> {
+    var structuredData = this.toStructuredData(data);
+    var yx = [];
+    var firstPart = [];
+    var secondPart = [];
+    for (var i = 0; i < data.width - step; i += step) {
+      for (var y = 0; y < data.height; y++) {
+        for (var x = 0; x < width; x++) {
+          if (x < width / 2) {
+            firstPart.push(structuredData[y][x + i]);
+          }
+          if (x >= width / 2) {
+            secondPart.push(structuredData[y][x + i]);
+          }
+        }
+      }
+      yx.push({x: i, y: secondPart.reduce((a, b)=>a + b) - firstPart.reduce((a, b)=>a + b)});
+      firstPart = [];
+      secondPart = [];
+
+    }
+    return yx;
+  };
 };
