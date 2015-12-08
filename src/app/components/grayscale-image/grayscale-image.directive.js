@@ -15,9 +15,12 @@ export default function inputFile($rootScope, Filters) {
         }
       });
       scope.toGray = ()=> {
-        angular.element('.grayscale-img-canvas').remove();
-        scope.grayscaleData = Filters.setPixels(Filters.filterImage(Filters.grayscale, scope.mainImage, scope.defaultGrayscaleImage, 0, 0, scope.scale), scope.mainImage);
-        $rootScope.$emit('grayscaled', scope.grayscaleData);
+        scope.scale = parseFloat(scope.scale);
+        if (scope.scale){
+          angular.element('.grayscale-img-canvas').remove();
+          scope.grayscaleData = Filters.setPixels(Filters.filterImage(Filters.grayscale, scope.mainImage, scope.defaultGrayscaleImage, 0, 0, scope.scale), scope.mainImage);
+          $rootScope.$emit('grayscaled', scope.grayscaleData);
+        }
       }
     }
   };

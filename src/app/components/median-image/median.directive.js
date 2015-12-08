@@ -24,8 +24,9 @@ export default function medianImage($rootScope, Filters) {
         $rootScope.$emit('median', scope.grayscaleData);
       };
 
-
       scope.filt = ()=> {
+        scope.xy = parseFloat(scope.xy);
+        scope.repeat = parseFloat(scope.repeat);
         if (scope.xy && scope.repeat) {
           angular.element('.median-img-canvas').remove();
           Filters.setPixels(Filters.filterImage(Filters.median, scope.mainImage, scope.medianElement, scope.grayscaleData, scope.xy, scope.scale), scope.mainImage);

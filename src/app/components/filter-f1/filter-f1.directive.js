@@ -10,7 +10,11 @@ export default  function filterF1($rootScope, Filters) {
         scope.filterF1();
       });
       scope.filterF1 = ()=>{
-        scope.updateChart(Filters.filterF1(scope.grayscaleData, scope.width, scope.dx));
+        scope.width = parseFloat(scope.width);
+        scope.dx = parseFloat(scope.dx);
+        if (scope.width && scope.dx){
+          scope.updateChart(Filters.filterF1(scope.grayscaleData, scope.width, scope.dx));
+        }
       };
       scope.updateChart = (points)=> {
         scope.data = [
