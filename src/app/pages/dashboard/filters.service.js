@@ -151,7 +151,6 @@ export default function Filters() {
   };
 
   this.filterF1 = (data, width, step)=> {
-    console.log(step);
     var structuredData = this.toStructuredData(data);
     var yx = [];
     var firstPart = [];
