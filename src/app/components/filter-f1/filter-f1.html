@@ -1,6 +1,11 @@
-<div class="f1-text">Filter F1 parameters</div>
+<div class="f1-text" ng-hide="mainImage">Параметры фильтра F1</div>
 <div class="menu col-xs-12" ng-show="mainImage">
-  <div class="col-xs-2"></div>
-  <input class="mashtab median-control col-xs-4" type="text" ng-model="width" ng-model-options="{ debounce: 1000 }" ng-change="filterF1()" placeholder="Width"/>
-  <input class="mashtab median-control col-xs-4" type="text" ng-model="dx" ng-model-options="{ debounce: 1000 }" ng-change="filterF1()" placeholder="dx"/>
+  <div class="f1-text col-xs-6">Параметры фильтра F1</div>
+  <input class="mashtab median-control col-xs-3" type="text" ng-model="width" ng-model-options="{ debounce: 1000 }" ng-change="filterF1()" placeholder="Width"/>
+  <input class="mashtab median-control col-xs-3" type="text" ng-model="dx" ng-model-options="{ debounce: 1000 }" ng-change="filterF1()" placeholder="dx"/>
+  
+  <div class="f1-text col-xs-6">Min/Max</div>
+  <input class="mashtab median-control col-xs-3" type="text" ng-model="width" ng-model-options="{ debounce: 1000 }" ng-change="filterF1()" placeholder="Min"/>
+  <input class="mashtab median-control col-xs-3" type="text" ng-model="dx" ng-model-options="{ debounce: 1000 }" ng-change="filterF1()" placeholder="Max"/>
+
 </div>

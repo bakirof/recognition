@@ -5,8 +5,35 @@ html, body, .main-view {
 .images {
   height: 100%;
   background-color: #fafafa;
-  padding-top: 20px;
+  padding-top: 10px;
   min-width: 400px;
+}
+
+.graph {
+  height: 100%;
+  background-color: #fafafa;
+  padding: 10px 0;
+  padding-right: 10px;
+}
+
+.graph .panel-body{
+  border: none !important;
+  background-color: white;  
+  border-radius: 4px;
+  box-shadow: 0 2px 1px rgba(239, 239, 239, 0.98);
+}
+
+.panel-default{
+  border: none !important;
+}
+
+.panel-default > .panel-heading{
+  background-color: #f3f3f3;
+}
+
+.graph .graph-table{
+  height: 470px;
+  overflow-y: auto;
 }
 
 .image {
@@ -22,6 +49,7 @@ html, body, .main-view {
 
 .f1 {
   padding-top: 5px;
+  padding-bottom: 5px;
   margin-bottom: 15px;
   background-color: white;
   border-radius: 4px;

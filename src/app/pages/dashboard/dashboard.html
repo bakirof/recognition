@@ -16,5 +16,15 @@
   </div>
 </div>
 <div class="col-xs-8 graph">
-<ev-graph></ev-graph>
+  <uib-accordion>
+    <uib-accordion-group class="graph-panel" heading="График" is-open="isFirstOpen">
+      <div class="chart">
+        <ev-graph></ev-graph>
+      </div>
+    </uib-accordion-group>
+    <uib-accordion-group heading="Таблица">
+      <div class="graph-table">
+      </div>
+    </uib-accordion-group>
+  </uib-accordion>
 </div>

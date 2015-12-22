@@ -13,8 +13,8 @@ class GraphController {
     'ngInject';
     $scope.options = {
       chart: {
-        type: 'lineWithFocusChart',
-        height: 580,
+        type: 'lineChart',
+        height: 470,
         margin: {
           top: 20,
           right: 20,
