@@ -2,9 +2,7 @@
   <span ng-if="!mainImage">Median filer</span>
 </div>
 <div class="menu col-xs-12" ng-show="mainImage">
+  <div class="col-xs-2"></div>
   <input class="median-control-repeat median-control col-xs-4" type="text" ng-model="repeat" ng-model-options="{ debounce: 1000 }" ng-change="repeatApply()" placeholder="Repeat"/>
   <input class="median-control-x median-control col-xs-4" type="text" ng-model-options="{ debounce: 1000 }" ng-change="repeatApply()" ng-model="xy" placeholder="XY"/>
-  <div class="col-xs-4 download-button">
-    Download
-  </div>
 </div>
