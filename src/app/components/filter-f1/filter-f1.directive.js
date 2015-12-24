@@ -17,21 +17,21 @@ export default  function filterF1($rootScope, Filters) {
                 }
             };
             scope.allFilters = () => {
-                var combinations = [];
+                scope.combinations = [];
                 scope.min = parseFloat(scope.min);
                 scope.max = parseFloat(scope.max);
                 if ((scope.min || scope.min === 0) && (scope.max === 0 || scope.max)) {
                     scope.extremums.filtered = scope.extremums.allExtremums.filter((val) => val.x > scope.min && val.x < scope.max);
                     for (var i = 0; i < scope.extremums.filtered.length; i++) {
                         for (var j = 1; j < scope.extremums.filtered.length - i; j++) {
-                            combinations.push({ min: scope.extremums.filtered[i].x, max: scope.extremums.filtered[j + i].x });
+                            scope.combinations.push({ min: scope.extremums.filtered[i].x, max: scope.extremums.filtered[j + i].x });
                         }
                     }
-                    combinations.forEach((combination)=>{
+                    scope.combinations.forEach((combination)=>{
                         combination.filters = Filters.applyMainFilters(scope.originalGrayscaleData, combination.min, combination.max);
                     });
                     console.log(scope.extremums.filtered);
-                    console.log(combinations);
+                    console.log(scope.combinations);
                     //Filters.applyMainFilters(scope.originalGrayscaleData);
                 };
             };

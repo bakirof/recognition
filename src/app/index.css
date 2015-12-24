@@ -36,6 +36,14 @@ html, body, .main-view {
   overflow-y: auto;
 }
 
+.graph .graph-table table td{
+    padding:10px;
+}
+
+.graph .graph-table table thead td{
+    font-size:18px;
+}
+
 .image {
   padding-top: 5px;
   min-height: 112px;
