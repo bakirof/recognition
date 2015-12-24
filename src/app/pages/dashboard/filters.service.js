@@ -523,7 +523,7 @@ export default function Filters() {
             - parts[15].reduce((a, b) => a + b)
             );
 
-        console.log(filters);
+        return filters
     };
 
     this.findExtremums = (data) => {

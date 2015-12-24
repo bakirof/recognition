@@ -25,9 +25,11 @@ export default  function filterF1($rootScope, Filters) {
                     for (var i = 0; i < scope.extremums.filtered.length; i++) {
                         for (var j = 1; j < scope.extremums.filtered.length - i; j++) {
                             combinations.push({ min: scope.extremums.filtered[i].x, max: scope.extremums.filtered[j + i].x });
-                            Filters.applyMainFilters(scope.originalGrayscaleData, scope.extremums.filtered[i].x, scope.extremums.filtered[j + i].x);
                         }
                     }
+                    combinations.forEach((combination)=>{
+                        combination.filters = Filters.applyMainFilters(scope.originalGrayscaleData, combination.min, combination.max);
+                    });
                     console.log(scope.extremums.filtered);
                     console.log(combinations);
                     //Filters.applyMainFilters(scope.originalGrayscaleData);
