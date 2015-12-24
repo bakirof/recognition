@@ -11,7 +11,7 @@ export default function medianImage($rootScope, Filters) {
             $rootScope.$on('grayscaled', (data) => {
                 scope.originalGrayscaleData = {};
                 scope.originalGrayscaleData.width = scope.grayscaleData.width;
-                scope.originalGrayscaleData.height = scope.grayscaleData.width;
+                scope.originalGrayscaleData.height = scope.grayscaleData.height;
                 scope.originalGrayscaleData.data = new Uint8Array(scope.grayscaleData.data.length);
                 scope.originalGrayscaleData.data.set(scope.grayscaleData.data);
                 if (data) {

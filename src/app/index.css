@@ -38,7 +38,7 @@ html, body, .main-view {
 
 .image {
   padding-top: 5px;
-  min-height: 110px;
+  min-height: 112px;
   max-height: 220px;
   margin-bottom: 15px;
   background-color: white;
@@ -67,13 +67,13 @@ html, body, .main-view {
 }
 
 .main-image {
-  height: 110px;
+  height: 112px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .grayscale-img-canvas {
-  height: 110px;
+  height: 112px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -82,13 +82,13 @@ html, body, .main-view {
   width: 100%;
   text-align: center;
   vertical-align: middle;
-  line-height: 110px;
-  height: 110px;
+  line-height: 112px;
+  height: 112px;
   margin-bottom: 5px;
 }
 
 .median-img-canvas {
-  height: 110px;
+  height: 112px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -110,15 +110,15 @@ html, body, .main-view {
 }
 
 .median-image {
-  height: 110px;
+  height: 112px;
 }
 
 #median-image {
-  line-height: 110px;
+  line-height: 112px;
 }
 
 #grayscale-image {
-  line-height: 110px;
+  line-height: 112px;
 }
 
 .median-menu-wrap {

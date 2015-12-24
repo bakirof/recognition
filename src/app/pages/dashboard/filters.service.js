@@ -179,22 +179,53 @@ export default function Filters() {
         var filters = {};
         var parts = {};
         var count = 0;
+        var segment = max - min;
+        var tmpSegment = segment;
+        var isNewStep = false;
+        var step = segment / 4;
+        var tmpStep = step;
+        var stepOther;
+        if (segment < 4) {
+            return;
+        }
         for (var f = 0; f < 16; f++) {
             filters[f] = [];
             parts[f] = [];
         }
-        for (var i = 0; i < data.height; i += data.height / 4) {
-            for (var j = 0; j < data.width; j += data.width / 4) {
 
+        function checkStep() {
+            step = parseInt(step) + 1;
+            if ((tmpSegment - step) % 3 !== 0 && (tmpSegment - step) !== 0) {
+                checkStep();
+            } else {
+                stepOther = (tmpSegment - step) / 3;
+            }
+            tmpStep = step;
+        }
+
+        if (segment % 4 !== 0) {
+            checkStep();
+            isNewStep = true;
+        }
+        for (var i = 0; i < data.height; i += data.height / 4) {
+            for (var j = min; j < max; j += step) {
+                if (isNewStep && j !== min) {
+                    step = stepOther;
+                } else if (isNewStep && j == min) {
+                    step = tmpStep;
+                }
                 for (var y = i; y < i + data.height / 4; y++) {
-                    for (var x = j; x < j + data.width / 4; x++) {
+                    for (var x = j; x < j + step; x++) {
+                        if (structuredData[y][x] == undefined) {
+                            console.log(undefined);
+                        }
                         parts[count].push(structuredData[y][x]);
                     }
                 }
-                //console.log(parts);
                 count++;
             }
         }
+        console.log(parts);
     };
 
     this.findExtremums = (data) => {
