@@ -177,7 +177,7 @@ export default function Filters() {
     this.applyMainFilters = (data, min, max) => {
         var structuredData = this.toStructuredData(data);
         var filters = {};
-        var parts = {};
+        var parts = [];
         var count = 0;
         var segment = max - min;
         var tmpSegment = segment;
@@ -189,7 +189,6 @@ export default function Filters() {
             return;
         }
         for (var f = 0; f < 16; f++) {
-            filters[f] = [];
             parts[f] = [];
         }
 
@@ -225,7 +224,306 @@ export default function Filters() {
                 count++;
             }
         }
-        console.log(parts);
+
+        filters[0] = (
+            parts[0].reduce((a, b) => a + b)
+            + parts[1].reduce((a, b) => a + b)
+            + parts[2].reduce((a, b) => a + b)
+            + parts[3].reduce((a, b) => a + b)
+            + parts[4].reduce((a, b) => a + b)
+            + parts[5].reduce((a, b) => a + b)
+            + parts[6].reduce((a, b) => a + b)
+            + parts[7].reduce((a, b) => a + b)
+            + parts[8].reduce((a, b) => a + b)
+            + parts[9].reduce((a, b) => a + b)
+            + parts[10].reduce((a, b) => a + b)
+            + parts[11].reduce((a, b) => a + b)
+            + parts[12].reduce((a, b) => a + b)
+            + parts[13].reduce((a, b) => a + b)
+            + parts[14].reduce((a, b) => a + b)
+            + parts[15].reduce((a, b) => a + b)
+            );
+
+        filters[1] = (
+            parts[2].reduce((a, b) => a + b)
+            + parts[3].reduce((a, b) => a + b)
+            + parts[6].reduce((a, b) => a + b)
+            + parts[7].reduce((a, b) => a + b)
+            + parts[10].reduce((a, b) => a + b)
+            + parts[11].reduce((a, b) => a + b)
+            + parts[14].reduce((a, b) => a + b)
+            + parts[15].reduce((a, b) => a + b)
+            - parts[0].reduce((a, b) => a + b)
+            - parts[1].reduce((a, b) => a + b)
+            - parts[4].reduce((a, b) => a + b)
+            - parts[5].reduce((a, b) => a + b)
+            - parts[8].reduce((a, b) => a + b)
+            - parts[9].reduce((a, b) => a + b)
+            - parts[12].reduce((a, b) => a + b)
+            - parts[13].reduce((a, b) => a + b)
+            )
+
+        filters[2] = (
+            parts[0].reduce((a, b) => a + b)
+            + parts[1].reduce((a, b) => a + b)
+            + parts[2].reduce((a, b) => a + b)
+            + parts[3].reduce((a, b) => a + b)
+            + parts[4].reduce((a, b) => a + b)
+            + parts[5].reduce((a, b) => a + b)
+            + parts[6].reduce((a, b) => a + b)
+            + parts[7].reduce((a, b) => a + b)
+            - parts[8].reduce((a, b) => a + b)
+            - parts[9].reduce((a, b) => a + b)
+            - parts[10].reduce((a, b) => a + b)
+            - parts[11].reduce((a, b) => a + b)
+            - parts[12].reduce((a, b) => a + b)
+            - parts[13].reduce((a, b) => a + b)
+            - parts[14].reduce((a, b) => a + b)
+            - parts[15].reduce((a, b) => a + b)
+            );
+
+        filters[3] = (
+            - parts[0].reduce((a, b) => a + b)
+            - parts[1].reduce((a, b) => a + b)
+            + parts[2].reduce((a, b) => a + b)
+            + parts[3].reduce((a, b) => a + b)
+            - parts[4].reduce((a, b) => a + b)
+            - parts[5].reduce((a, b) => a + b)
+            + parts[6].reduce((a, b) => a + b)
+            + parts[7].reduce((a, b) => a + b)
+            + parts[8].reduce((a, b) => a + b)
+            + parts[9].reduce((a, b) => a + b)
+            - parts[10].reduce((a, b) => a + b)
+            - parts[11].reduce((a, b) => a + b)
+            + parts[12].reduce((a, b) => a + b)
+            + parts[13].reduce((a, b) => a + b)
+            - parts[14].reduce((a, b) => a + b)
+            - parts[15].reduce((a, b) => a + b)
+            );
+
+        filters[4] = (
+            - parts[0].reduce((a, b) => a + b)
+            + parts[1].reduce((a, b) => a + b)
+            + parts[2].reduce((a, b) => a + b)
+            - parts[3].reduce((a, b) => a + b)
+            - parts[4].reduce((a, b) => a + b)
+            + parts[5].reduce((a, b) => a + b)
+            + parts[6].reduce((a, b) => a + b)
+            - parts[7].reduce((a, b) => a + b)
+            - parts[8].reduce((a, b) => a + b)
+            + parts[9].reduce((a, b) => a + b)
+            + parts[10].reduce((a, b) => a + b)
+            - parts[11].reduce((a, b) => a + b)
+            - parts[12].reduce((a, b) => a + b)
+            + parts[13].reduce((a, b) => a + b)
+            + parts[14].reduce((a, b) => a + b)
+            - parts[15].reduce((a, b) => a + b)
+            );
+
+        filters[5] = (
+            - parts[0].reduce((a, b) => a + b)
+            - parts[1].reduce((a, b) => a + b)
+            - parts[2].reduce((a, b) => a + b)
+            - parts[3].reduce((a, b) => a + b)
+            + parts[4].reduce((a, b) => a + b)
+            + parts[5].reduce((a, b) => a + b)
+            + parts[6].reduce((a, b) => a + b)
+            + parts[7].reduce((a, b) => a + b)
+            + parts[8].reduce((a, b) => a + b)
+            + parts[9].reduce((a, b) => a + b)
+            + parts[10].reduce((a, b) => a + b)
+            + parts[11].reduce((a, b) => a + b)
+            - parts[12].reduce((a, b) => a + b)
+            - parts[13].reduce((a, b) => a + b)
+            - parts[14].reduce((a, b) => a + b)
+            - parts[15].reduce((a, b) => a + b)
+            );
+            
+        filters[6] = (
+            - parts[0].reduce((a, b) => a + b)
+            + parts[1].reduce((a, b) => a + b)
+            + parts[2].reduce((a, b) => a + b)
+            - parts[3].reduce((a, b) => a + b)
+            - parts[4].reduce((a, b) => a + b)
+            + parts[5].reduce((a, b) => a + b)
+            + parts[6].reduce((a, b) => a + b)
+            - parts[7].reduce((a, b) => a + b)
+            + parts[8].reduce((a, b) => a + b)
+            - parts[9].reduce((a, b) => a + b)
+            - parts[10].reduce((a, b) => a + b)
+            + parts[11].reduce((a, b) => a + b)
+            + parts[12].reduce((a, b) => a + b)
+            - parts[13].reduce((a, b) => a + b)
+            - parts[14].reduce((a, b) => a + b)
+            + parts[15].reduce((a, b) => a + b)
+            );
+            
+        filters[7] = (
+            + parts[0].reduce((a, b) => a + b)
+            + parts[1].reduce((a, b) => a + b)
+            - parts[2].reduce((a, b) => a + b)
+            - parts[3].reduce((a, b) => a + b)
+            - parts[4].reduce((a, b) => a + b)
+            - parts[5].reduce((a, b) => a + b)
+            + parts[6].reduce((a, b) => a + b)
+            + parts[7].reduce((a, b) => a + b)
+            - parts[8].reduce((a, b) => a + b)
+            - parts[9].reduce((a, b) => a + b)
+            + parts[10].reduce((a, b) => a + b)
+            + parts[11].reduce((a, b) => a + b)
+            + parts[12].reduce((a, b) => a + b)
+            + parts[13].reduce((a, b) => a + b)
+            - parts[14].reduce((a, b) => a + b)
+            - parts[15].reduce((a, b) => a + b)
+            );
+            
+        filters[8] = (
+            + parts[0].reduce((a, b) => a + b)
+            - parts[1].reduce((a, b) => a + b)
+            - parts[2].reduce((a, b) => a + b)
+            + parts[3].reduce((a, b) => a + b)
+            - parts[4].reduce((a, b) => a + b)
+            + parts[5].reduce((a, b) => a + b)
+            + parts[6].reduce((a, b) => a + b)
+            - parts[7].reduce((a, b) => a + b)
+            - parts[8].reduce((a, b) => a + b)
+            + parts[9].reduce((a, b) => a + b)
+            + parts[10].reduce((a, b) => a + b)
+            - parts[11].reduce((a, b) => a + b)
+            + parts[12].reduce((a, b) => a + b)
+            - parts[13].reduce((a, b) => a + b)
+            - parts[14].reduce((a, b) => a + b)
+            + parts[15].reduce((a, b) => a + b)
+            );
+            
+        filters[9] = (
+            + parts[0].reduce((a, b) => a + b)
+            - parts[1].reduce((a, b) => a + b)
+            + parts[2].reduce((a, b) => a + b)
+            - parts[3].reduce((a, b) => a + b)
+            + parts[4].reduce((a, b) => a + b)
+            - parts[5].reduce((a, b) => a + b)
+            + parts[6].reduce((a, b) => a + b)
+            - parts[7].reduce((a, b) => a + b)
+            + parts[8].reduce((a, b) => a + b)
+            - parts[9].reduce((a, b) => a + b)
+            + parts[10].reduce((a, b) => a + b)
+            - parts[11].reduce((a, b) => a + b)
+            + parts[12].reduce((a, b) => a + b)
+            - parts[13].reduce((a, b) => a + b)
+            + parts[14].reduce((a, b) => a + b)
+            - parts[15].reduce((a, b) => a + b)
+            );
+        filters[10] = (
+            - parts[0].reduce((a, b) => a + b)
+            - parts[1].reduce((a, b) => a + b)
+            - parts[2].reduce((a, b) => a + b)
+            - parts[3].reduce((a, b) => a + b)
+            + parts[4].reduce((a, b) => a + b)
+            + parts[5].reduce((a, b) => a + b)
+            + parts[6].reduce((a, b) => a + b)
+            + parts[7].reduce((a, b) => a + b)
+            - parts[8].reduce((a, b) => a + b)
+            - parts[9].reduce((a, b) => a + b)
+            - parts[10].reduce((a, b) => a + b)
+            - parts[11].reduce((a, b) => a + b)
+            + parts[12].reduce((a, b) => a + b)
+            + parts[13].reduce((a, b) => a + b)
+            + parts[14].reduce((a, b) => a + b)
+            + parts[15].reduce((a, b) => a + b)
+            );
+        filters[11] = (
+            + parts[0].reduce((a, b) => a + b)
+            - parts[1].reduce((a, b) => a + b)
+            + parts[2].reduce((a, b) => a + b)
+            - parts[3].reduce((a, b) => a + b)
+            + parts[4].reduce((a, b) => a + b)
+            - parts[5].reduce((a, b) => a + b)
+            + parts[6].reduce((a, b) => a + b)
+            - parts[7].reduce((a, b) => a + b)
+            - parts[8].reduce((a, b) => a + b)
+            + parts[9].reduce((a, b) => a + b)
+            - parts[10].reduce((a, b) => a + b)
+            + parts[11].reduce((a, b) => a + b)
+            - parts[12].reduce((a, b) => a + b)
+            + parts[13].reduce((a, b) => a + b)
+            - parts[14].reduce((a, b) => a + b)
+            + parts[15].reduce((a, b) => a + b)
+            );
+        filters[12] = (
+            + parts[0].reduce((a, b) => a + b)
+            + parts[1].reduce((a, b) => a + b)
+            - parts[2].reduce((a, b) => a + b)
+            - parts[3].reduce((a, b) => a + b)
+            - parts[4].reduce((a, b) => a + b)
+            - parts[5].reduce((a, b) => a + b)
+            + parts[6].reduce((a, b) => a + b)
+            + parts[7].reduce((a, b) => a + b)
+            + parts[8].reduce((a, b) => a + b)
+            + parts[9].reduce((a, b) => a + b)
+            - parts[10].reduce((a, b) => a + b)
+            - parts[11].reduce((a, b) => a + b)
+            - parts[12].reduce((a, b) => a + b)
+            - parts[13].reduce((a, b) => a + b)
+            + parts[14].reduce((a, b) => a + b)
+            + parts[15].reduce((a, b) => a + b)
+            );
+        filters[13] = (
+            - parts[0].reduce((a, b) => a + b)
+            + parts[1].reduce((a, b) => a + b)
+            - parts[2].reduce((a, b) => a + b)
+            + parts[3].reduce((a, b) => a + b)
+            + parts[4].reduce((a, b) => a + b)
+            - parts[5].reduce((a, b) => a + b)
+            + parts[6].reduce((a, b) => a + b)
+            - parts[7].reduce((a, b) => a + b)
+            + parts[8].reduce((a, b) => a + b)
+            - parts[9].reduce((a, b) => a + b)
+            + parts[10].reduce((a, b) => a + b)
+            - parts[11].reduce((a, b) => a + b)
+            - parts[12].reduce((a, b) => a + b)
+            + parts[13].reduce((a, b) => a + b)
+            - parts[14].reduce((a, b) => a + b)
+            + parts[15].reduce((a, b) => a + b)
+            );
+        filters[14] = (
+            + parts[0].reduce((a, b) => a + b)
+            - parts[1].reduce((a, b) => a + b)
+            - parts[2].reduce((a, b) => a + b)
+            + parts[3].reduce((a, b) => a + b)
+            - parts[4].reduce((a, b) => a + b)
+            + parts[5].reduce((a, b) => a + b)
+            + parts[6].reduce((a, b) => a + b)
+            - parts[7].reduce((a, b) => a + b)
+            + parts[8].reduce((a, b) => a + b)
+            - parts[9].reduce((a, b) => a + b)
+            - parts[10].reduce((a, b) => a + b)
+            + parts[11].reduce((a, b) => a + b)
+            - parts[12].reduce((a, b) => a + b)
+            + parts[13].reduce((a, b) => a + b)
+            + parts[14].reduce((a, b) => a + b)
+            - parts[15].reduce((a, b) => a + b)
+            );
+        filters[15] = (
+            - parts[0].reduce((a, b) => a + b)
+            + parts[1].reduce((a, b) => a + b)
+            - parts[2].reduce((a, b) => a + b)
+            + parts[3].reduce((a, b) => a + b)
+            + parts[4].reduce((a, b) => a + b)
+            - parts[5].reduce((a, b) => a + b)
+            + parts[6].reduce((a, b) => a + b)
+            - parts[7].reduce((a, b) => a + b)
+            - parts[8].reduce((a, b) => a + b)
+            + parts[9].reduce((a, b) => a + b)
+            - parts[10].reduce((a, b) => a + b)
+            + parts[11].reduce((a, b) => a + b)
+            + parts[12].reduce((a, b) => a + b)
+            - parts[13].reduce((a, b) => a + b)
+            + parts[14].reduce((a, b) => a + b)
+            - parts[15].reduce((a, b) => a + b)
+            );
+
+        console.log(filters);
     };
 
     this.findExtremums = (data) => {
