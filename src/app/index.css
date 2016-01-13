@@ -31,17 +31,58 @@ html, body, .main-view {
   background-color: #f3f3f3;
 }
 
-.graph .graph-table{
-  height: 470px;
-  overflow-y: auto;
+.graph-table{
+  height: 100%;
+  background-color: #fafafa;
+  padding: 10px 0;
 }
 
-.graph .graph-table table td{
-    padding:10px;
+.graph-table .card{
+    background-color: white;
 }
 
-.graph .graph-table table thead td{
-    font-size:18px;
+.graph-table .card-wrapper{
+    border:1px solid #fafafa;
+    height: calc(100% - 55px);
+    box-shadow: 0 2px 1px rgba(239, 239, 239, 0.98);
+    overflow-y: scroll;
+    border-radius: 4px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0; 
+    padding: 0 !important;
+    margin:0px;
+    padding:0px;
+}
+
+.graph-table .table-card-row .td{
+   padding: 10px 0;
+}
+
+.graph-table .thead .td{
+padding:0;
+}
+
+.graph-table .table-card-row{
+    padding:0px;
+    border-bottom: 1px solid #f3f3f3;
+}
+.graph-table .table-card-row:hover{
+    border-bottom: 1px solid #006064;
+    cursor: pointer;
+}
+.graph-table .thead{
+   background: #f3f3f3;
+   font-size: 15px;
+   padding: 8px 0;
+   border-top-left-radius: 4px;
+   border-top-right-radius: 4px;
+   
+}
+
+.graph-table .thead-wrapper{
+  height: 35px;
+  padding-left:0px;
+  
 }
 
 .image {

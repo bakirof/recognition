@@ -19,6 +19,9 @@ export default function inputFile($rootScope) {
         img.classList.add("img-responsive");
         img.classList.add("main-image");
         img.file = files[0];
+        scope.imageFileName = img.file.name.split('.');
+        delete scope.imageFileName[1];
+        scope.imageFileName = scope.imageFileName[0];
         dropZone.appendChild(img);
         reader.onload = (function (aImg) {
           return function (e) {

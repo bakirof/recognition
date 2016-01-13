@@ -15,31 +15,35 @@
         <ev-filter-f1></ev-filter-f1>
     </div>
 </div>
-<div class="col-xs-8 graph">
+<div class="col-xs-3 graph-table">
+    <div class="thead-wrapper col-xs-12">
+        <div class="col-xs-12 thead">
+
+            <div class="col-xs-12 thead-row">
+                <div class="col-xs-2 td">Min</div>
+                <div class="col-xs-2 td">Max</div>
+                <div class="col-xs-6 td">Расстояние</div>
+                <div class="col-xs-2 td">Символ</div>
+            </div>
+
+        </div>
+    </div>
+    <div class="card-wrapper col-xs-12">
+        <div class="col-xs-12 card">
+            <div class="table-card-row col-xs-12" ng-repeat="combination in combinations | orderBy: '+distance'">
+                <div class="col-xs-2 td">{{combination.min}}</div>
+                <div class="col-xs-2 td">{{combination.max}}</div>
+                <div class="col-xs-6 td">{{combination.distance}}</div>
+                <div class="col-xs-2 td">{{combination.symbol}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-xs-5 graph">
     <uib-accordion>
         <uib-accordion-group class="graph-panel" heading="График" is-open="isFirstOpen">
             <div class="chart">
                 <ev-graph></ev-graph>
-            </div>
-        </uib-accordion-group>
-        <uib-accordion-group heading="Таблица">
-            <div class="graph-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <td>Min</td>
-                            <td>Max</td>
-                            <td>Расстояние</td>
-                        </tr>
-                    </thead>
-                    <tbody class="graph-tbody">
-                        <tr ng-repeat="combination in combinations">
-                            <td>{{combination.min}}</td>
-                            <td>{{combination.max}}</td>
-                            <td>{{combination.filters[0]}}</td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </uib-accordion-group>
     </uib-accordion>

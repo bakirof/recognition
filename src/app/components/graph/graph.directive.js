@@ -7,7 +7,7 @@ export default function ($rootScope) {
         bindToController: true,
         restrict: 'E',
         link: (scope) => {
-            $rootScope.$on('newdata', (event, data)=>{
+            $rootScope.$on('newdata', (event, data) => {
                 scope.data = data;
                 scope.$apply();
             });
@@ -22,7 +22,10 @@ class GraphController {
             chart: {
                 type: 'lineWithFocusChart',
                 useInteractiveGuideline: true,
-                height: 470,
+                xTickFormat: function (d) {
+                    return 123;
+                },
+                height: 550,
                 margin: {
                     top: 20,
                     right: 20,
