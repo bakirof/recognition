@@ -56,7 +56,7 @@ export default  function filterF1($rootScope, Filters, FiltersConstants) {
                                 tmpDistance += Math.pow((combination.filters[key22] - FiltersConstants.words[scope.imageFileName][key2].filters[key22]), 2)
                             }
                         }
-                        distances.push({ distance: Math.round(Math.sqrt(tmpDistance) * 1000)/ 1000, symbol: key2 });
+                        distances.push({ distance: Math.round(Math.sqrt(tmpDistance) * 1000) / 1000, symbol: key2 });
                     }
                     minDistance = distances[0];
                     for (var i = 0; i < distances.length; i++) {
