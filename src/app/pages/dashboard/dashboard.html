@@ -30,7 +30,7 @@
     </div>
     <div class="card-wrapper col-xs-12">
         <div class="col-xs-12 card">
-            <div class="table-card-row col-xs-12" ng-repeat="combination in combinations | orderBy: '+distance'">
+            <div class="table-card-row col-xs-12" ng-click="vm.updateCanvas(combination.min, combination.max)" ng-repeat="combination in combinations | orderBy: '+distance'">
                 <div class="col-xs-2 td">{{combination.min}}</div>
                 <div class="col-xs-2 td">{{combination.max}}</div>
                 <div class="col-xs-6 td">{{combination.distance}}</div>

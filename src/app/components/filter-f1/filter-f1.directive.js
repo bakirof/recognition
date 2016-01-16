@@ -66,16 +66,13 @@ export default  function filterF1($rootScope, Filters, FiltersConstants) {
                     }
                     combination.distance = minDistance.distance;
                     combination.symbol = minDistance.symbol;
-                    console.log(scope.combinations);
                 });
 
             };
 
             scope.symbol = () => {
                 var fil;
-                console.log(scope.originalGrayscaleData);
                 fil = Filters.applyMainFilters(scope.originalGrayscaleData, 0, scope.originalGrayscaleData.width);
-                console.log(fil);
             };
             scope.updateChart = (points) => {
                 scope.data = [
